@@ -1,0 +1,256 @@
+//Written By NilaElect
+//Date: 25 Jan 2022
+//Started with 3 notes
+//You can append, push, delete, insert after and print
+//Problem-1:insert after **user unable to choose where to insert
+// If there are same data in notes, unable to choose which note to delete, will delete the first note
+
+// printing
+// push
+// append
+// insert after **user unable to choose where to insert
+// search
+// delete
+
+
+#include "iostream"
+using namespace std;
+
+class Node{
+public:
+    int data;
+    Node* next;
+};
+
+void print(Node* node){//head   singly linked list
+    while ( node !=NULL){
+        std::cout<< node->data <<" ";
+        node = node->next;
+    }
+}
+
+void push(Node** head_ref , int new_data){
+    Node* new_node = new Node();
+    new_node->data = new_data;
+    new_node->next = (*head_ref);
+    (*head_ref) = new_node;
+}
+
+void append(Node** head_ref , int new_data){
+
+    Node* new_node = new Node();
+    new_node->data = new_data;
+    new_node->next = NULL;
+    Node* last = *head_ref;
+
+    if(*head_ref == NULL){
+        *head_ref = new_node;
+
+    }
+
+    while (last->next != NULL){
+        last = last->next;
+    }
+    last->next = new_node;
+}
+
+void insertAfter(Node* prev_node , int new_data){
+
+//Check if the given prev_node is NULL
+    if(prev_node == NULL){
+        cout<<"Not allow to insert as the given previous node cannot be NULL "<<endl;
+        return;
+    }
+    //Allocate a new node
+    Node* new_node = new Node();
+    //Put in the data
+    new_node->data = new_data;
+
+    // Make next of new node as next of prev_node
+    new_node->next = prev_node->next;
+
+    //move the next of prev_node as new_node
+    prev_node->next  = new_node;
+}
+
+bool search(Node* head , int key){
+
+    Node* currentNode= head;
+
+    while (currentNode != NULL){
+            if(currentNode->data == key){
+                return true;
+            }
+            currentNode = currentNode->next;
+    }
+    return false;
+
+}
+
+void deleteNode(Node** head_ref , int key){
+
+    Node* temp = *head_ref;
+    Node* prev = NULL;
+                              //temp
+   //1-(next)== 2-(next) == 3-(next)== 4-(next)     1/23/22
+   // if our key is at head
+   if( temp !=NULL && temp->data == key){
+                    //head
+       //1-(next)== 2-(next) == 3-(next)== 4-(next)     1/23/22
+       *head_ref=temp->next;
+       delete temp;
+       return;
+   }else{
+       //1-(next)== 2-(next) == 3-(next)== 4-(next)     1/23/22
+       while (temp!=NULL && temp->data !=key){
+
+           prev = temp;
+           temp = temp->next;
+       }
+        if(temp == NULL)
+            return;
+        prev->next =temp->next;
+        delete temp;
+   }
+}
+
+int main(){
+    int d1,d2,d3;
+    int modeChoice, addin_data, new_data, search_data, exist_data, flag;
+
+    Node* head=NULL;
+    Node* second=NULL;
+    Node* third=NULL;
+
+    // allocate 3 nodes
+    head = new Node();
+    second= new Node();
+    third = new Node();
+//---------------------------------------------------------------------
+// Key in 3 data
+
+   // assign data in first node
+    cout<<" Please enter an integer number for the 1st Data : ";
+    cin>> d1;
+    head->data=d1;
+// Link first node with the second node
+    head->next = second;
+
+
+//assign data to second node
+    cout<<" Please enter an integer number for the 2nd Data : ";
+    cin>> d2;
+    second->data = d2;
+//Link second node with the third node
+    second->next = third;
+
+// assign data to third node
+    cout<<" Please enter an integer number for the 3rd Data : ";
+    cin>> d3;
+    third -> data = d3;
+//next pointer of the third block is made NULL to indicate that the linked list is terminated here
+    third ->next = NULL;
+
+//-----------------------------------------------
+
+   cout<<" LinkedList data structure is successfully created!"<<endl;
+   cout<<""<<endl;
+
+    cout<<" Your data : ";
+    print(head);
+    cout<<""<<endl;
+    cout<<""<<endl;
+
+while(modeChoice!=0) {
+    cout<<" "<<endl;
+    cout<<" Please enter 1 if you want to Push Data"<<endl;
+    cout<<" Please enter 2 if you want to Append Data"<<endl;
+    cout<<" Please enter 3 if you want to Insert After Data"<<endl;
+    cout<<" Please enter 4 if you want to Search Data"<<endl;
+    cout<<" Please enter 5 if you want to Delete Data"<<endl;
+    cout<<" If you want to exit the program please type '0'"<<endl;
+    cout<<"Mode : ";
+    cin>>modeChoice;
+    cout<<""<<endl;
+
+    switch (modeChoice){
+        case 1:
+            cout<<"*********** Push Data **************"<<endl;
+            cout<<" Please key in an integer value to push : ";
+            cin>>addin_data;
+            push(&head ,addin_data);
+            cout<<""<<endl;
+            cout<<"Data after Push: ";
+            print(head);
+            cout<<""<<endl;
+            break;
+
+        case 2:
+            cout<<"*****Append Data*****"<<endl;
+            cout<<" Please key in an integer value to append : ";
+            cin>>addin_data;
+
+            append(&head, addin_data);
+            cout<<""<<endl;
+            cout<<"Data after Append : ";
+            print(head);
+            cout<<""<<endl;
+            break;
+
+        case 3:
+            cout<<"*****Insert After*****"<<endl;
+            //cout<<" Please key in existing integer value to insert the value after it : ";
+            //cin>>exist_data;
+            cout<<" Please key in a new integer value to insert : ";
+            cin>>new_data;
+            cout<<""<<endl;
+
+            insertAfter(head->next , new_data); // second
+            //insertAfter(second->next, new_data); // third
+            cout<<""<<endl;
+
+            cout<<"Data Insert After : ";
+            print(head);
+            cout<<""<<endl;
+            break;
+
+        case 4:
+            cout<<"*****Search Data*****"<<endl;
+            cout<<" Please key in an integer to search : ";
+            cin>>search_data;
+
+            search(head,search_data)? cout<<" Data is found!" : cout<<" Data not found!"<<endl;
+            cout<<" "<<endl;
+            break;
+
+        case 5:
+            cout<<"*****Delete Data*****" <<endl;
+            cout<<" Please key in an existing integer value to delete : ";
+            cin>>exist_data;
+
+            deleteNode(&head,exist_data);
+            cout<<" "<<endl;
+
+            cout<<"Data After Delete : ";
+            print(head);
+            cout<<" "<<endl;
+            break;
+
+        case 0:
+            cout<<"Exit the program!"<<endl;
+            break;
+
+
+        default:
+        cout<<"The mode that you key in is not available"<<endl;
+        cout<<"Please key in 1 to 5 "<<endl;
+        cout<<"If you want to exit the program please type '0'"<<endl;
+        break;
+        }
+    cout<<""<<endl;
+
+    }
+    return 0;
+}
+
+
