@@ -3,8 +3,8 @@
 //Singly Linked List with Switch
 //Started with 3 notes
 //You can append, push, delete, insert after and print
-//Problem-1:insert after **user unable to choose where to insert
-// If there are same data in notes, unable to choose which note to delete, will delete the first note
+//Issue -1:insert after **user unable to choose where to insert
+//Issue -2: If there are same data in notes, unable to choose which note to delete, will delete the first note
 
 // printing
 // push
