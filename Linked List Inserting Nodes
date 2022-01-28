@@ -1,0 +1,107 @@
+//Written By NilaElect
+//Date: 28 Jan 2022
+//Started with 3 notes
+//You can add new Node any position you want
+
+#include "iostream"
+using namespace std;
+
+// A Linked List Node
+class Node
+{
+  public:
+    int data;        // data field
+    Node* next;     // pointer to the next node
+};
+
+class Node* head;
+
+void print(){
+    Node* temp = head;
+    while (temp != NULL){
+        cout<<temp->data;
+        temp = temp->next;
+    }
+
+cout<<""<<endl;
+}
+void Insert(int data, int n){
+    Node*temp1 = new Node();
+    temp1->data = data;
+    temp1->next = NULL;
+
+    if(n==1){
+        temp1->next = head;
+        head = temp1;
+        return;
+    }
+    Node* temp2 = head;
+    for(int i=0; i<n-2; i++){
+        temp2 = temp2->next;
+    }
+
+    temp1->next = temp2-> next;
+    temp2->next = temp1;
+}
+
+int NodeCount()
+{
+    Node* temp =head;
+    int count = 0;
+    while(temp!=NULL)
+    {
+        count=count+1;
+        temp = temp -> next;
+    }
+    cout<<"Total count number of Nodes : "<< count <<endl;
+
+return count;
+}
+
+int main(){
+
+    int data,n, pos,count;
+    int aaa=1;
+    head = NULL; // empty list
+    cout<<" Please enter an integer number for the Head : ";
+    cin>> data;
+    Insert(data,1);//List: 1st Pos
+
+    //assign data to second node
+    cout<<" Please enter an integer number for the 2nd Data : ";
+    cin>> data;
+    Insert(data,2);
+
+    // assign data to tail node
+    cout<<" Please enter an integer number for the tail : ";
+    cin>> data;
+    Insert(data,3);
+
+ while(aaa!=0){
+    // assign data and position to insert
+    cout<<" Please enter an integer number for new Data: ";
+    cin>> data;
+
+    count = NodeCount();
+    pos = count + 1;
+    cout<<"Total position : "<< pos <<endl;
+
+    cout<<" Please enter position 1 to "<< pos << "  : ";
+    cin>> n;
+
+    while(pos < n )
+
+    {
+        cout<<"The position that you enter is invalid" <<endl;
+        cout<<" Please enter position 1 to "<< pos << "  : ";
+        cin>>n;
+    }
+
+    Insert(data,n);
+
+    print();
+
+    cout<<""<<endl;
+}
+return 0;
+}
