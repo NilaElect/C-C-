@@ -1,7 +1,7 @@
 //Written By NilaElect
 //Date: 28 Jan 2022
-//Started with 3 notes
-//You can add new Node any position you want
+//Started with 3 nodes
+//You can insert node and add data any position you want
 
 #include "iostream"
 using namespace std;
