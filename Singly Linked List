@@ -1,10 +1,10 @@
 //Written By NilaElect
 //Date: 25 Jan 2022
 //Singly Linked List with Switch
-//Started with 3 notes
+//Started with 3 nodes
 //You can append, push, delete, insert after and print
 //Issue -1:insert after **user unable to choose where to insert
-//Issue -2: If there are same data in notes, unable to choose which note to delete, will delete the first note
+//Issue -2: If there are same data in nodes, unable to choose which node to delete, will delete the first node
 
 // printing
 // push
