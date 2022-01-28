@@ -1,10 +1,13 @@
 //Written By NilaElect
 //Date: 28 Jan 2022
 //Started with 3 notes
-//You can insert node and data any position you want
-//Problem-1:If there are the same data in nodes, unable to choose which node to delete, it will delete the first node
+//You can insert node and add data any position you want
+//Problem-1:If there are same data in nodes, unable to choose which node to delete, it will delete the first node
 
-// insert node and data any position 
+// printing
+// push
+// append
+// insert after **user unable to choose where to insert
 // search
 // delete
 
@@ -114,16 +117,16 @@ void deleteNode(Node** head_ref , int key){
     Node* temp = *head_ref;
     Node* prev = NULL;
                               //temp
-   //1-(next)== 2-(next) == 3-(next)== 4-(next)     1/23/22
+   //1-(next)== 2-(next) == 3-(next)== 4-(next)   
    // if our key is at head
    if( temp !=NULL && temp->data == key){
                     //head
-       //1-(next)== 2-(next) == 3-(next)== 4-(next)     1/23/22
+       //1-(next)== 2-(next) == 3-(next)== 4-(next)    
        *head_ref=temp->next;
        delete temp;
        return;
    }else{
-       //1-(next)== 2-(next) == 3-(next)== 4-(next)     1/23/22
+       //1-(next)== 2-(next) == 3-(next)== 4-(next)    
        while (temp!=NULL && temp->data !=key){
 
            prev = temp;
@@ -187,12 +190,13 @@ while(modeChoice!=0) {
         case 3:
             cout<<"*****Delete Data*****" <<endl;
             cout<<" Please key in an existing integer value to delete : ";
-            cin>>exist_data;
+            cin>>search_data;
+            search(head,search_data)? cout<<search_data<< " is found!" : cout<<"The data that you want to delete is not valid!"<< endl;
 
-            deleteNode(&head,exist_data);
+            deleteNode(&head,search_data);
             cout<<" "<<endl;
 
-            cout<<"Data After Delete : ";
+            cout<<"LinkedList data :  ";
             print();
             cout<<" "<<endl;
             break;
