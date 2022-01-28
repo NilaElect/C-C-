@@ -2,7 +2,7 @@
 //Date: 28 Jan 2022
 //Started with 3 notes
 //You can insert node and add data any position you want
-//Problem-1:If there are same data in notes, unable to choose which node to delete, it will delete the first note
+//Problem-1:If there are same data in nodes, unable to choose which node to delete, it will delete the first node
 
 // printing
 // push
